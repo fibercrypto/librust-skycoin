@@ -13,15 +13,21 @@
 use serde_json::Value;
 
 #[derive(Debug, Serialize, Deserialize)]
-pub struct InlineResponse2006 {
+pub struct ApiV1WalletTransactionTo {
+    #[serde(rename = "hours")]
+    pub hours: Option<i64>,
     #[serde(rename = "address")]
     pub address: Option<String>,
+    #[serde(rename = "coins")]
+    pub coins: Option<i64>,
 }
 
-impl InlineResponse2006 {
-    pub fn new() -> InlineResponse2006 {
-        InlineResponse2006 {
+impl ApiV1WalletTransactionTo {
+    pub fn new() -> ApiV1WalletTransactionTo {
+        ApiV1WalletTransactionTo {
+            hours: None,
             address: None,
+            coins: None,
         }
     }
 }

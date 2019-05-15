@@ -1,11 +1,12 @@
-# Apiv1wallettransactionHoursSelection
+# ApiV1WalletTransactionTo
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**mode** | **String** |  | [optional] 
-**share_factor** | **String** |  | [optional] 
-**_type** | **String** |  | [optional] 
+**hours** | **i64** |  | [optional] 
+**address** | **String** |  | [optional] 
+**coins** | **i64** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

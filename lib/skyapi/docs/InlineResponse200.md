@@ -1,6 +1,7 @@
 # InlineResponse200
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **hours** | **i64** |  | [optional] 

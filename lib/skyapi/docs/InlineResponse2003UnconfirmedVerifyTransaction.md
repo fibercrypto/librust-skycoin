@@ -1,6 +1,7 @@
 # InlineResponse2003UnconfirmedVerifyTransaction
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **burn_factor** | **i32** |  | [optional] 

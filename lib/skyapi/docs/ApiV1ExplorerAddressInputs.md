@@ -1,10 +1,14 @@
-# Apiv1walletsEntries
+# ApiV1ExplorerAddressInputs
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**public_key** | **String** |  | [optional] 
-**address** | **String** |  | [optional] 
+**owner** | **String** |  | [optional] 
+**hours** | **i64** |  | [optional] 
+**calculated_hours** | **i64** |  | [optional] 
+**coins** | **String** |  | [optional] 
+**uxid** | **String** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -1,12 +1,13 @@
-# Apiv1exploreraddressOutputs
+# ApiV1ExplorerAddressStatus
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**hours** | **i64** |  | [optional] 
-**dst** | **String** |  | [optional] 
-**coins** | **String** |  | [optional] 
-**uxid** | **String** |  | [optional] 
+**unconfirmed** | **bool** |  | [optional] 
+**block_seq** | **i64** |  | [optional] 
+**label** | **i64** |  | [optional] 
+**confirmed** | **bool** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
