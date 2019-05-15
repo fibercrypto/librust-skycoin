@@ -31,54 +31,55 @@ impl<C: hyper::client::Connect> DefaultApiClient<C> {
 }
 
 pub trait DefaultApi {
-    fn address_count(&self, ) -> Box<Future<Item = Value, Error = Error<serde_json::Value>>>;
+    fn join(&self, seqs: Vec<i32>) -> String;
+    fn address_count(&self, ) -> Box<Future<Item = serde_json::Value, Error = Error<serde_json::Value>>>;
     fn address_uxouts(&self, address: &str) -> Box<Future<Item = Vec<::models::InlineResponse200>, Error = Error<serde_json::Value>>>;
-    fn balance_get(&self, addrs: &str) -> Box<Future<Item = Value, Error = Error<serde_json::Value>>>;
-    fn balance_post(&self, addrs: &str) -> Box<Future<Item = Value, Error = Error<serde_json::Value>>>;
-    fn block(&self, hash: &str, seq: i32) -> Box<Future<Item = Value, Error = Error<serde_json::Value>>>;
-    fn blockchain_metadata(&self, ) -> Box<Future<Item = Value, Error = Error<serde_json::Value>>>;
-    fn blockchain_progress(&self, ) -> Box<Future<Item = Value, Error = Error<serde_json::Value>>>;
-    fn blocks_get(&self, start: i32, end: i32, seqs: Vec<i32>) -> Box<Future<Item = Value, Error = Error<serde_json::Value>>>;
-    fn blocks_post(&self, start: i32, end: i32, seqs: Vec<i32>) -> Box<Future<Item = Value, Error = Error<serde_json::Value>>>;
-    fn coin_supply(&self, ) -> Box<Future<Item = Value, Error = Error<serde_json::Value>>>;
+    fn balance_get(&self, addrs: &str) -> Box<Future<Item = serde_json::Value, Error = Error<serde_json::Value>>>;
+    fn balance_post(&self, addrs: &str) -> Box<Future<Item = serde_json::Value, Error = Error<serde_json::Value>>>;
+    fn block(&self, hash: &str, seq: i32) -> Box<Future<Item = serde_json::Value, Error = Error<serde_json::Value>>>;
+    fn blockchain_metadata(&self, ) -> Box<Future<Item = serde_json::Value, Error = Error<serde_json::Value>>>;
+    fn blockchain_progress(&self, ) -> Box<Future<Item = serde_json::Value, Error = Error<serde_json::Value>>>;
+    fn blocks_get(&self, start: i32, end: i32, seqs: Vec<i32>) -> Box<Future<Item = serde_json::Value, Error = Error<serde_json::Value>>>;
+    fn blocks_post(&self, start: i32, end: i32, seqs: Vec<i32>) -> Box<Future<Item = serde_json::Value, Error = Error<serde_json::Value>>>;
+    fn coin_supply(&self, ) -> Box<Future<Item = serde_json::Value, Error = Error<serde_json::Value>>>;
     fn csrf(&self, ) -> Box<Future<Item = ::models::InlineResponse2001, Error = Error<serde_json::Value>>>;
     fn default_connections(&self, ) -> Box<Future<Item = Vec<String>, Error = Error<serde_json::Value>>>;
     fn explorer_address(&self, address: &str) -> Box<Future<Item = Vec<::models::InlineResponse2002>, Error = Error<serde_json::Value>>>;
-    fn health(&self, ) -> Box<Future<Item = Value, Error = Error<serde_json::Value>>>;
-    fn last_blocks(&self, num: i32) -> Box<Future<Item = Value, Error = Error<serde_json::Value>>>;
+    fn health(&self, ) -> Box<Future<Item = serde_json::Value, Error = Error<serde_json::Value>>>;
+    fn last_blocks(&self, num: i32) -> Box<Future<Item = serde_json::Value, Error = Error<serde_json::Value>>>;
     fn network_connection(&self, addr: &str) -> Box<Future<Item = ::models::InlineResponse2003, Error = Error<serde_json::Value>>>;
     fn network_connections(&self, states: &str, direction: &str) -> Box<Future<Item = Vec<::models::InlineResponse2003>, Error = Error<serde_json::Value>>>;
     fn network_connections_disconnect(&self, id: &str) -> Box<Future<Item = (), Error = Error<serde_json::Value>>>;
     fn network_connections_exchange(&self, ) -> Box<Future<Item = Vec<String>, Error = Error<serde_json::Value>>>;
     fn network_connections_trust(&self, ) -> Box<Future<Item = Vec<String>, Error = Error<serde_json::Value>>>;
-    fn outputs_get(&self, address: Vec<String>, hash: Vec<String>) -> Box<Future<Item = Value, Error = Error<serde_json::Value>>>;
-    fn outputs_post(&self, address: &str, hash: &str) -> Box<Future<Item = Value, Error = Error<serde_json::Value>>>;
+    fn outputs_get(&self, address: Vec<String>, hash: Vec<String>) -> Box<Future<Item = serde_json::Value, Error = Error<serde_json::Value>>>;
+    fn outputs_post(&self, address: &str, hash: &str) -> Box<Future<Item = serde_json::Value, Error = Error<serde_json::Value>>>;
     fn pending_txs(&self, ) -> Box<Future<Item = Vec<::models::InlineResponse2004>, Error = Error<serde_json::Value>>>;
     fn resend_unconfirmed_txns(&self, ) -> Box<Future<Item = (), Error = Error<serde_json::Value>>>;
-    fn richlist(&self, include_distribution: bool, n: &str) -> Box<Future<Item = Value, Error = Error<serde_json::Value>>>;
-    fn transaction(&self, txid: &str, encoded: bool) -> Box<Future<Item = Value, Error = Error<serde_json::Value>>>;
-    fn transaction_inject(&self, rawtx: &str) -> Box<Future<Item = Value, Error = Error<serde_json::Value>>>;
-    fn transaction_raw(&self, txid: &str) -> Box<Future<Item = Value, Error = Error<serde_json::Value>>>;
-    fn transaction_verify(&self, ) -> Box<Future<Item = Value, Error = Error<serde_json::Value>>>;
-    fn transactions_get(&self, addrs: &str, confirmed: &str) -> Box<Future<Item = Value, Error = Error<serde_json::Value>>>;
-    fn transactions_post(&self, addrs: &str, confirmed: &str) -> Box<Future<Item = Value, Error = Error<serde_json::Value>>>;
-    fn uxout(&self, uxid: &str) -> Box<Future<Item = Value, Error = Error<serde_json::Value>>>;
+    fn richlist(&self, include_distribution: bool, n: &str) -> Box<Future<Item = serde_json::Value, Error = Error<serde_json::Value>>>;
+    fn transaction(&self, txid: &str, encoded: bool) -> Box<Future<Item = serde_json::Value, Error = Error<serde_json::Value>>>;
+    fn transaction_inject(&self, rawtx: &str) -> Box<Future<Item = serde_json::Value, Error = Error<serde_json::Value>>>;
+    fn transaction_raw(&self, txid: &str) -> Box<Future<Item = serde_json::Value, Error = Error<serde_json::Value>>>;
+    fn transaction_verify(&self, ) -> Box<Future<Item = serde_json::Value, Error = Error<serde_json::Value>>>;
+    fn transactions_get(&self, addrs: &str, confirmed: &str) -> Box<Future<Item = serde_json::Value, Error = Error<serde_json::Value>>>;
+    fn transactions_post(&self, addrs: &str, confirmed: &str) -> Box<Future<Item = serde_json::Value, Error = Error<serde_json::Value>>>;
+    fn uxout(&self, uxid: &str) -> Box<Future<Item = serde_json::Value, Error = Error<serde_json::Value>>>;
     fn verify_address(&self, address: &str) -> Box<Future<Item = ::models::InlineResponse2007, Error = Error<serde_json::Value>>>;
-    fn version(&self, ) -> Box<Future<Item = Value, Error = Error<serde_json::Value>>>;
-    fn wallet(&self, id: &str) -> Box<Future<Item = Value, Error = Error<serde_json::Value>>>;
-    fn wallet_balance(&self, id: &str) -> Box<Future<Item = Value, Error = Error<serde_json::Value>>>;
-    fn wallet_create(&self, seed: &str, label: &str, scan: i32, encrypt: bool, password: &str) -> Box<Future<Item = Value, Error = Error<serde_json::Value>>>;
-    fn wallet_decrypt(&self, id: &str, password: &str) -> Box<Future<Item = Value, Error = Error<serde_json::Value>>>;
-    fn wallet_encrypt(&self, id: &str, password: &str) -> Box<Future<Item = Value, Error = Error<serde_json::Value>>>;
+    fn version(&self, ) -> Box<Future<Item = (), Error = Error<serde_json::Value>>>;
+    fn wallet(&self, id: &str) -> Box<Future<Item = serde_json::Value, Error = Error<serde_json::Value>>>;
+    fn wallet_balance(&self, id: &str) -> Box<Future<Item = serde_json::Value, Error = Error<serde_json::Value>>>;
+    fn wallet_create(&self, seed: &str, label: &str, scan: i32, encrypt: bool, password: &str) -> Box<Future<Item = serde_json::Value, Error = Error<serde_json::Value>>>;
+    fn wallet_decrypt(&self, id: &str, password: &str) -> Box<Future<Item = serde_json::Value, Error = Error<serde_json::Value>>>;
+    fn wallet_encrypt(&self, id: &str, password: &str) -> Box<Future<Item = serde_json::Value, Error = Error<serde_json::Value>>>;
     fn wallet_folder(&self, addr: &str) -> Box<Future<Item = ::models::InlineResponse2006, Error = Error<serde_json::Value>>>;
-    fn wallet_new_address(&self, id: &str, num: &str, password: &str) -> Box<Future<Item = Value, Error = Error<serde_json::Value>>>;
-    fn wallet_new_seed(&self, entropy: &str) -> Box<Future<Item = Value, Error = Error<serde_json::Value>>>;
-    fn wallet_recover(&self, id: &str, seed: &str, password: &str) -> Box<Future<Item = Value, Error = Error<serde_json::Value>>>;
-    fn wallet_seed(&self, id: &str, password: &str) -> Box<Future<Item = Value, Error = Error<serde_json::Value>>>;
-    fn wallet_seed_verify(&self, seed: &str) -> Box<Future<Item = Value, Error = Error<serde_json::Value>>>;
-    fn wallet_spent(&self, id: &str, dst: &str, coins: &str, password: &str) -> Box<Future<Item = Value, Error = Error<serde_json::Value>>>;
-    fn wallet_transaction(&self, body: ::models::InlineObject) -> Box<Future<Item = Value, Error = Error<serde_json::Value>>>;
-    fn wallet_transactions(&self, id: &str) -> Box<Future<Item = Value, Error = Error<serde_json::Value>>>;
+    fn wallet_new_address(&self, id: &str, num: &str, password: &str) -> Box<Future<Item = serde_json::Value, Error = Error<serde_json::Value>>>;
+    fn wallet_new_seed(&self, entropy: &str) -> Box<Future<Item = serde_json::Value, Error = Error<serde_json::Value>>>;
+    fn wallet_recover(&self, id: &str, seed: &str, password: &str) -> Box<Future<Item = serde_json::Value, Error = Error<serde_json::Value>>>;
+    fn wallet_seed(&self, id: &str, password: &str) -> Box<Future<Item = serde_json::Value, Error = Error<serde_json::Value>>>;
+    fn wallet_seed_verify(&self, seed: &str) -> Box<Future<Item = serde_json::Value, Error = Error<serde_json::Value>>>;
+    fn wallet_spent(&self, id: &str, dst: &str, coins: &str, password: &str) -> Box<Future<Item = serde_json::Value, Error = Error<serde_json::Value>>>;
+    fn wallet_transaction(&self, inline_object: ::models::InlineObject) -> Box<Future<Item = serde_json::Value, Error = Error<serde_json::Value>>>;
+    fn wallet_transactions(&self, id: &str) -> Box<Future<Item = serde_json::Value, Error = Error<serde_json::Value>>>;
     fn wallet_unload(&self, id: &str) -> Box<Future<Item = (), Error = Error<serde_json::Value>>>;
     fn wallet_update(&self, id: &str, label: &str) -> Box<Future<Item = (), Error = Error<serde_json::Value>>>;
     fn wallets(&self, ) -> Box<Future<Item = Vec<::models::InlineResponse2005>, Error = Error<serde_json::Value>>>;
@@ -86,7 +87,7 @@ pub trait DefaultApi {
 
 
 impl<C: hyper::client::Connect>DefaultApi for DefaultApiClient<C> {
-    fn address_count(&self, ) -> Box<Future<Item = Value, Error = Error<serde_json::Value>>> {
+    fn address_count(&self, ) -> Box<Future<Item = serde_json::Value, Error = Error<serde_json::Value>>> {
         __internal_request::Request::new(hyper::Method::Get, "/api/v1/addresscount".to_string())
             .execute(self.configuration.borrow())
     }
@@ -97,13 +98,13 @@ impl<C: hyper::client::Connect>DefaultApi for DefaultApiClient<C> {
             .execute(self.configuration.borrow())
     }
 
-    fn balance_get(&self, addrs: &str) -> Box<Future<Item = Value, Error = Error<serde_json::Value>>> {
+    fn balance_get(&self, addrs: &str) -> Box<Future<Item = serde_json::Value, Error = Error<serde_json::Value>>> {
         __internal_request::Request::new(hyper::Method::Get, "/api/v1/balance".to_string())
             .with_query_param("addrs".to_string(), addrs.to_string())
             .execute(self.configuration.borrow())
     }
 
-    fn balance_post(&self, addrs: &str) -> Box<Future<Item = Value, Error = Error<serde_json::Value>>> {
+    fn balance_post(&self, addrs: &str) -> Box<Future<Item = serde_json::Value, Error = Error<serde_json::Value>>> {
         __internal_request::Request::new(hyper::Method::Post, "/api/v1/balance".to_string())
             .with_auth(__internal_request::Auth::ApiKey(__internal_request::ApiKey{
                 in_header: true,
@@ -114,32 +115,45 @@ impl<C: hyper::client::Connect>DefaultApi for DefaultApiClient<C> {
             .execute(self.configuration.borrow())
     }
 
-    fn block(&self, hash: &str, seq: i32) -> Box<Future<Item = Value, Error = Error<serde_json::Value>>> {
+    fn block(&self, hash: &str, seq: i32) -> Box<Future<Item = serde_json::Value, Error = Error<serde_json::Value>>> {
         __internal_request::Request::new(hyper::Method::Get, "/api/v1/block".to_string())
             .with_query_param("hash".to_string(), hash.to_string())
             .with_query_param("seq".to_string(), seq.to_string())
             .execute(self.configuration.borrow())
     }
 
-    fn blockchain_metadata(&self, ) -> Box<Future<Item = Value, Error = Error<serde_json::Value>>> {
+    fn blockchain_metadata(&self, ) -> Box<Future<Item = serde_json::Value, Error = Error<serde_json::Value>>> {
         __internal_request::Request::new(hyper::Method::Get, "/api/v1/blockchain/metadata".to_string())
             .execute(self.configuration.borrow())
     }
 
-    fn blockchain_progress(&self, ) -> Box<Future<Item = Value, Error = Error<serde_json::Value>>> {
+    fn blockchain_progress(&self, ) -> Box<Future<Item = serde_json::Value, Error = Error<serde_json::Value>>> {
         __internal_request::Request::new(hyper::Method::Get, "/api/v1/blockchain/progress".to_string())
             .execute(self.configuration.borrow())
     }
 
-    fn blocks_get(&self, start: i32, end: i32, seqs: Vec<i32>) -> Box<Future<Item = Value, Error = Error<serde_json::Value>>> {
+    fn blocks_get(&self, start: i32, end: i32, seqs: Vec<i32>) -> Box<Future<Item = serde_json::Value, Error = Error<serde_json::Value>>> {
         __internal_request::Request::new(hyper::Method::Get, "/api/v1/blocks".to_string())
             .with_query_param("start".to_string(), start.to_string())
             .with_query_param("end".to_string(), end.to_string())
-            .with_query_param("seqs".to_string(), seqs.join(",").to_string())
+            .with_query_param("seqs".to_string(), self.join(seqs))
             .execute(self.configuration.borrow())
     }
 
-    fn blocks_post(&self, start: i32, end: i32, seqs: Vec<i32>) -> Box<Future<Item = Value, Error = Error<serde_json::Value>>> {
+    fn join(&self, seqs: Vec<i32>) -> String {
+        let mut result: String = "".parse().unwrap();
+        let len = seqs.len();
+        for i in seqs {
+            result.push_str(&*i.to_string());
+            if i as usize == len-1 {
+                break;
+            }
+            result.push_str(",");
+        }
+        return result;
+    }
+
+    fn blocks_post(&self, start: i32, end: i32, seqs: Vec<i32>) -> Box<Future<Item = serde_json::Value, Error = Error<serde_json::Value>>> {
         __internal_request::Request::new(hyper::Method::Post, "/api/v1/blocks".to_string())
             .with_auth(__internal_request::Auth::ApiKey(__internal_request::ApiKey{
                 in_header: true,
@@ -148,11 +162,11 @@ impl<C: hyper::client::Connect>DefaultApi for DefaultApiClient<C> {
             }))
             .with_query_param("start".to_string(), start.to_string())
             .with_query_param("end".to_string(), end.to_string())
-            .with_query_param("seqs".to_string(), seqs.join(",").to_string())
+            .with_query_param("seqs".to_string(), self.join(seqs))
             .execute(self.configuration.borrow())
     }
 
-    fn coin_supply(&self, ) -> Box<Future<Item = Value, Error = Error<serde_json::Value>>> {
+    fn coin_supply(&self, ) -> Box<Future<Item = serde_json::Value, Error = Error<serde_json::Value>>> {
         __internal_request::Request::new(hyper::Method::Get, "/api/v1/coinSupply".to_string())
             .execute(self.configuration.borrow())
     }
@@ -173,12 +187,12 @@ impl<C: hyper::client::Connect>DefaultApi for DefaultApiClient<C> {
             .execute(self.configuration.borrow())
     }
 
-    fn health(&self, ) -> Box<Future<Item = Value, Error = Error<serde_json::Value>>> {
+    fn health(&self, ) -> Box<Future<Item = serde_json::Value, Error = Error<serde_json::Value>>> {
         __internal_request::Request::new(hyper::Method::Get, "/api/v1/health".to_string())
             .execute(self.configuration.borrow())
     }
 
-    fn last_blocks(&self, num: i32) -> Box<Future<Item = Value, Error = Error<serde_json::Value>>> {
+    fn last_blocks(&self, num: i32) -> Box<Future<Item = serde_json::Value, Error = Error<serde_json::Value>>> {
         __internal_request::Request::new(hyper::Method::Get, "/api/v1/last_blocks".to_string())
             .with_query_param("num".to_string(), num.to_string())
             .execute(self.configuration.borrow())
@@ -229,14 +243,14 @@ impl<C: hyper::client::Connect>DefaultApi for DefaultApiClient<C> {
             .execute(self.configuration.borrow())
     }
 
-    fn outputs_get(&self, address: Vec<String>, hash: Vec<String>) -> Box<Future<Item = Value, Error = Error<serde_json::Value>>> {
+    fn outputs_get(&self, address: Vec<String>, hash: Vec<String>) -> Box<Future<Item = serde_json::Value, Error = Error<serde_json::Value>>> {
         __internal_request::Request::new(hyper::Method::Get, "/api/v1/outputs".to_string())
             .with_query_param("address".to_string(), address.join(",").to_string())
             .with_query_param("hash".to_string(), hash.join(",").to_string())
             .execute(self.configuration.borrow())
     }
 
-    fn outputs_post(&self, address: &str, hash: &str) -> Box<Future<Item = Value, Error = Error<serde_json::Value>>> {
+    fn outputs_post(&self, address: &str, hash: &str) -> Box<Future<Item = serde_json::Value, Error = Error<serde_json::Value>>> {
         __internal_request::Request::new(hyper::Method::Post, "/api/v1/outputs".to_string())
             .with_auth(__internal_request::Auth::ApiKey(__internal_request::ApiKey{
                 in_header: true,
@@ -264,21 +278,21 @@ impl<C: hyper::client::Connect>DefaultApi for DefaultApiClient<C> {
             .execute(self.configuration.borrow())
     }
 
-    fn richlist(&self, include_distribution: bool, n: &str) -> Box<Future<Item = Value, Error = Error<serde_json::Value>>> {
+    fn richlist(&self, include_distribution: bool, n: &str) -> Box<Future<Item = serde_json::Value, Error = Error<serde_json::Value>>> {
         __internal_request::Request::new(hyper::Method::Get, "/api/v1/richlist".to_string())
             .with_query_param("include-distribution".to_string(), include_distribution.to_string())
             .with_query_param("n".to_string(), n.to_string())
             .execute(self.configuration.borrow())
     }
 
-    fn transaction(&self, txid: &str, encoded: bool) -> Box<Future<Item = Value, Error = Error<serde_json::Value>>> {
+    fn transaction(&self, txid: &str, encoded: bool) -> Box<Future<Item = serde_json::Value, Error = Error<serde_json::Value>>> {
         __internal_request::Request::new(hyper::Method::Get, "/api/v1/transaction".to_string())
             .with_query_param("txid".to_string(), txid.to_string())
             .with_query_param("encoded".to_string(), encoded.to_string())
             .execute(self.configuration.borrow())
     }
 
-    fn transaction_inject(&self, rawtx: &str) -> Box<Future<Item = Value, Error = Error<serde_json::Value>>> {
+    fn transaction_inject(&self, rawtx: &str) -> Box<Future<Item = serde_json::Value, Error = Error<serde_json::Value>>> {
         __internal_request::Request::new(hyper::Method::Post, "/api/v2/transaction/inject".to_string())
             .with_auth(__internal_request::Auth::ApiKey(__internal_request::ApiKey{
                 in_header: true,
@@ -289,13 +303,13 @@ impl<C: hyper::client::Connect>DefaultApi for DefaultApiClient<C> {
             .execute(self.configuration.borrow())
     }
 
-    fn transaction_raw(&self, txid: &str) -> Box<Future<Item = Value, Error = Error<serde_json::Value>>> {
+    fn transaction_raw(&self, txid: &str) -> Box<Future<Item = serde_json::Value, Error = Error<serde_json::Value>>> {
         __internal_request::Request::new(hyper::Method::Get, "/api/v2/transaction/raw".to_string())
             .with_query_param("txid".to_string(), txid.to_string())
             .execute(self.configuration.borrow())
     }
 
-    fn transaction_verify(&self, ) -> Box<Future<Item = Value, Error = Error<serde_json::Value>>> {
+    fn transaction_verify(&self, ) -> Box<Future<Item = serde_json::Value, Error = Error<serde_json::Value>>> {
         __internal_request::Request::new(hyper::Method::Post, "/api/v2/transaction/verify".to_string())
             .with_auth(__internal_request::Auth::ApiKey(__internal_request::ApiKey{
                 in_header: true,
@@ -305,14 +319,14 @@ impl<C: hyper::client::Connect>DefaultApi for DefaultApiClient<C> {
             .execute(self.configuration.borrow())
     }
 
-    fn transactions_get(&self, addrs: &str, confirmed: &str) -> Box<Future<Item = Value, Error = Error<serde_json::Value>>> {
+    fn transactions_get(&self, addrs: &str, confirmed: &str) -> Box<Future<Item = serde_json::Value, Error = Error<serde_json::Value>>> {
         __internal_request::Request::new(hyper::Method::Get, "/api/v1/transactions".to_string())
             .with_query_param("addrs".to_string(), addrs.to_string())
             .with_query_param("confirmed".to_string(), confirmed.to_string())
             .execute(self.configuration.borrow())
     }
 
-    fn transactions_post(&self, addrs: &str, confirmed: &str) -> Box<Future<Item = Value, Error = Error<serde_json::Value>>> {
+    fn transactions_post(&self, addrs: &str, confirmed: &str) -> Box<Future<Item = serde_json::Value, Error = Error<serde_json::Value>>> {
         __internal_request::Request::new(hyper::Method::Post, "/api/v1/transactions".to_string())
             .with_auth(__internal_request::Auth::ApiKey(__internal_request::ApiKey{
                 in_header: true,
@@ -324,7 +338,7 @@ impl<C: hyper::client::Connect>DefaultApi for DefaultApiClient<C> {
             .execute(self.configuration.borrow())
     }
 
-    fn uxout(&self, uxid: &str) -> Box<Future<Item = Value, Error = Error<serde_json::Value>>> {
+    fn uxout(&self, uxid: &str) -> Box<Future<Item = serde_json::Value, Error = Error<serde_json::Value>>> {
         __internal_request::Request::new(hyper::Method::Get, "/api/v1/uxout".to_string())
             .with_query_param("uxid".to_string(), uxid.to_string())
             .execute(self.configuration.borrow())
@@ -341,24 +355,24 @@ impl<C: hyper::client::Connect>DefaultApi for DefaultApiClient<C> {
             .execute(self.configuration.borrow())
     }
 
-    fn version(&self, ) -> Box<Future<Item = Value, Error = Error<serde_json::Value>>> {
+    fn version(&self, ) -> Box<Future<Item = (), Error = Error<serde_json::Value>>> {
         __internal_request::Request::new(hyper::Method::Get, "/api/v1/version".to_string())
             .execute(self.configuration.borrow())
     }
 
-    fn wallet(&self, id: &str) -> Box<Future<Item = Value, Error = Error<serde_json::Value>>> {
+    fn wallet(&self, id: &str) -> Box<Future<Item = serde_json::Value, Error = Error<serde_json::Value>>> {
         __internal_request::Request::new(hyper::Method::Get, "/api/v1/wallet".to_string())
             .with_query_param("id".to_string(), id.to_string())
             .execute(self.configuration.borrow())
     }
 
-    fn wallet_balance(&self, id: &str) -> Box<Future<Item = Value, Error = Error<serde_json::Value>>> {
+    fn wallet_balance(&self, id: &str) -> Box<Future<Item = serde_json::Value, Error = Error<serde_json::Value>>> {
         __internal_request::Request::new(hyper::Method::Get, "/api/v1/wallet/balance".to_string())
             .with_query_param("id".to_string(), id.to_string())
             .execute(self.configuration.borrow())
     }
 
-    fn wallet_create(&self, seed: &str, label: &str, scan: i32, encrypt: bool, password: &str) -> Box<Future<Item = Value, Error = Error<serde_json::Value>>> {
+    fn wallet_create(&self, seed: &str, label: &str, scan: i32, encrypt: bool, password: &str) -> Box<Future<Item = serde_json::Value, Error = Error<serde_json::Value>>> {
         __internal_request::Request::new(hyper::Method::Post, "/api/v1/wallet/create".to_string())
             .with_auth(__internal_request::Auth::ApiKey(__internal_request::ApiKey{
                 in_header: true,
@@ -373,7 +387,7 @@ impl<C: hyper::client::Connect>DefaultApi for DefaultApiClient<C> {
             .execute(self.configuration.borrow())
     }
 
-    fn wallet_decrypt(&self, id: &str, password: &str) -> Box<Future<Item = Value, Error = Error<serde_json::Value>>> {
+    fn wallet_decrypt(&self, id: &str, password: &str) -> Box<Future<Item = serde_json::Value, Error = Error<serde_json::Value>>> {
         __internal_request::Request::new(hyper::Method::Post, "/api/v1/wallet/decrypt".to_string())
             .with_auth(__internal_request::Auth::ApiKey(__internal_request::ApiKey{
                 in_header: true,
@@ -385,7 +399,7 @@ impl<C: hyper::client::Connect>DefaultApi for DefaultApiClient<C> {
             .execute(self.configuration.borrow())
     }
 
-    fn wallet_encrypt(&self, id: &str, password: &str) -> Box<Future<Item = Value, Error = Error<serde_json::Value>>> {
+    fn wallet_encrypt(&self, id: &str, password: &str) -> Box<Future<Item = serde_json::Value, Error = Error<serde_json::Value>>> {
         __internal_request::Request::new(hyper::Method::Post, "/api/v1/wallet/encrypt".to_string())
             .with_auth(__internal_request::Auth::ApiKey(__internal_request::ApiKey{
                 in_header: true,
@@ -403,7 +417,7 @@ impl<C: hyper::client::Connect>DefaultApi for DefaultApiClient<C> {
             .execute(self.configuration.borrow())
     }
 
-    fn wallet_new_address(&self, id: &str, num: &str, password: &str) -> Box<Future<Item = Value, Error = Error<serde_json::Value>>> {
+    fn wallet_new_address(&self, id: &str, num: &str, password: &str) -> Box<Future<Item = serde_json::Value, Error = Error<serde_json::Value>>> {
         __internal_request::Request::new(hyper::Method::Post, "/api/v1/wallet/newAddress".to_string())
             .with_auth(__internal_request::Auth::ApiKey(__internal_request::ApiKey{
                 in_header: true,
@@ -416,13 +430,13 @@ impl<C: hyper::client::Connect>DefaultApi for DefaultApiClient<C> {
             .execute(self.configuration.borrow())
     }
 
-    fn wallet_new_seed(&self, entropy: &str) -> Box<Future<Item = Value, Error = Error<serde_json::Value>>> {
+    fn wallet_new_seed(&self, entropy: &str) -> Box<Future<Item = serde_json::Value, Error = Error<serde_json::Value>>> {
         __internal_request::Request::new(hyper::Method::Get, "/api/v1/wallet/newSeed".to_string())
             .with_query_param("entropy".to_string(), entropy.to_string())
             .execute(self.configuration.borrow())
     }
 
-    fn wallet_recover(&self, id: &str, seed: &str, password: &str) -> Box<Future<Item = Value, Error = Error<serde_json::Value>>> {
+    fn wallet_recover(&self, id: &str, seed: &str, password: &str) -> Box<Future<Item = serde_json::Value, Error = Error<serde_json::Value>>> {
         __internal_request::Request::new(hyper::Method::Post, "/api/v2/wallet/recover".to_string())
             .with_auth(__internal_request::Auth::ApiKey(__internal_request::ApiKey{
                 in_header: true,
@@ -435,7 +449,7 @@ impl<C: hyper::client::Connect>DefaultApi for DefaultApiClient<C> {
             .execute(self.configuration.borrow())
     }
 
-    fn wallet_seed(&self, id: &str, password: &str) -> Box<Future<Item = Value, Error = Error<serde_json::Value>>> {
+    fn wallet_seed(&self, id: &str, password: &str) -> Box<Future<Item = serde_json::Value, Error = Error<serde_json::Value>>> {
         __internal_request::Request::new(hyper::Method::Post, "/api/v1/wallet/seed".to_string())
             .with_auth(__internal_request::Auth::ApiKey(__internal_request::ApiKey{
                 in_header: true,
@@ -447,7 +461,7 @@ impl<C: hyper::client::Connect>DefaultApi for DefaultApiClient<C> {
             .execute(self.configuration.borrow())
     }
 
-    fn wallet_seed_verify(&self, seed: &str) -> Box<Future<Item = Value, Error = Error<serde_json::Value>>> {
+    fn wallet_seed_verify(&self, seed: &str) -> Box<Future<Item = serde_json::Value, Error = Error<serde_json::Value>>> {
         __internal_request::Request::new(hyper::Method::Post, "/api/v2/wallet/seed/verify".to_string())
             .with_auth(__internal_request::Auth::ApiKey(__internal_request::ApiKey{
                 in_header: true,
@@ -458,7 +472,7 @@ impl<C: hyper::client::Connect>DefaultApi for DefaultApiClient<C> {
             .execute(self.configuration.borrow())
     }
 
-    fn wallet_spent(&self, id: &str, dst: &str, coins: &str, password: &str) -> Box<Future<Item = Value, Error = Error<serde_json::Value>>> {
+    fn wallet_spent(&self, id: &str, dst: &str, coins: &str, password: &str) -> Box<Future<Item = serde_json::Value, Error = Error<serde_json::Value>>> {
         __internal_request::Request::new(hyper::Method::Post, "/api/v1/wallet/spend".to_string())
             .with_auth(__internal_request::Auth::ApiKey(__internal_request::ApiKey{
                 in_header: true,
@@ -472,18 +486,18 @@ impl<C: hyper::client::Connect>DefaultApi for DefaultApiClient<C> {
             .execute(self.configuration.borrow())
     }
 
-    fn wallet_transaction(&self, body: ::models::InlineObject) -> Box<Future<Item = Value, Error = Error<serde_json::Value>>> {
+    fn wallet_transaction(&self, inline_object: ::models::InlineObject) -> Box<Future<Item = serde_json::Value, Error = Error<serde_json::Value>>> {
         __internal_request::Request::new(hyper::Method::Post, "/api/v1/wallet/transaction".to_string())
             .with_auth(__internal_request::Auth::ApiKey(__internal_request::ApiKey{
                 in_header: true,
                 in_query: false,
                 param_name: "X-CSRF-TOKEN".to_owned(),
             }))
-            .with_body_param(body)
+            .with_body_param(inline_object)
             .execute(self.configuration.borrow())
     }
 
-    fn wallet_transactions(&self, id: &str) -> Box<Future<Item = Value, Error = Error<serde_json::Value>>> {
+    fn wallet_transactions(&self, id: &str) -> Box<Future<Item = serde_json::Value, Error = Error<serde_json::Value>>> {
         __internal_request::Request::new(hyper::Method::Get, "/api/v1/wallet/transactions".to_string())
             .with_query_param("id".to_string(), id.to_string())
             .execute(self.configuration.borrow())
