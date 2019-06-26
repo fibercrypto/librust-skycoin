@@ -4,11 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**announced** | **String** |  | [optional] 
-**is_valid** | **bool** |  | [optional] 
-**checked** | **String** |  | [optional] 
-**received** | **String** |  | [optional] 
-**transaction** | [***::models::ApiV1PendingTxsTransaction**](_api_v1_pendingTxs_transaction.md) |  | [optional] 
+**connections** | [**Vec<::models::NetworkConnectionSchema>**](networkConnectionSchema.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

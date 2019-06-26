@@ -6,17 +6,20 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**address_count**](DefaultApi.md#address_count) | **Get** /api/v1/addresscount | Returns the total number of unique address that have coins.
 [**address_uxouts**](DefaultApi.md#address_uxouts) | **Get** /api/v1/address_uxouts | 
+[**api_v1_rawtx_get**](DefaultApi.md#api_v1_rawtx_get) | **Get** /api/v1/rawtx | 
+[**api_v2_metrics_get**](DefaultApi.md#api_v2_metrics_get) | **Get** /api/v2/metrics | 
 [**balance_get**](DefaultApi.md#balance_get) | **Get** /api/v1/balance | Returns the balance of one or more addresses, both confirmed and predicted. The predicted balance is the confirmed balance minus the pending spends.
 [**balance_post**](DefaultApi.md#balance_post) | **Post** /api/v1/balance | Returns the balance of one or more addresses, both confirmed and predicted. The predicted balance is the confirmed balance minus the pending spends.
-[**block**](DefaultApi.md#block) | **Get** /api/v1/block | 
+[**block**](DefaultApi.md#block) | **Get** /api/v1/block | Returns the balance of one or more addresses, both confirmed and predicted. The predicted balance is the confirmed balance minus the pending spends.
 [**blockchain_metadata**](DefaultApi.md#blockchain_metadata) | **Get** /api/v1/blockchain/metadata | Returns the blockchain metadata.
 [**blockchain_progress**](DefaultApi.md#blockchain_progress) | **Get** /api/v1/blockchain/progress | Returns the blockchain sync progress.
-[**blocks_get**](DefaultApi.md#blocks_get) | **Get** /api/v1/blocks | blocksHandler returns blocks between a start and end point,
-[**blocks_post**](DefaultApi.md#blocks_post) | **Post** /api/v1/blocks | blocksHandler returns blocks between a start and end point,
+[**blocks**](DefaultApi.md#blocks) | **Get** /api/v1/blocks | Returns the balance of one or more addresses, both confirmed and predicted. The predicted balance is the confirmed balance minus the pending spends.
 [**coin_supply**](DefaultApi.md#coin_supply) | **Get** /api/v1/coinSupply | 
 [**csrf**](DefaultApi.md#csrf) | **Get** /api/v1/csrf | Creates a new CSRF token. Previous CSRF tokens are invalidated by this call.
+[**data_delete**](DefaultApi.md#data_delete) | **Delete** /api/v2/data | 
+[**data_get**](DefaultApi.md#data_get) | **Get** /api/v2/data | 
+[**data_post**](DefaultApi.md#data_post) | **Post** /api/v2/data | 
 [**default_connections**](DefaultApi.md#default_connections) | **Get** /api/v1/network/defaultConnections | defaultConnectionsHandler returns the list of default hardcoded bootstrap addresses.\\n They are not necessarily connected to.
-[**explorer_address**](DefaultApi.md#explorer_address) | **Get** /api/v1/explorer/address | 
 [**health**](DefaultApi.md#health) | **Get** /api/v1/health | Returns node health data.
 [**last_blocks**](DefaultApi.md#last_blocks) | **Get** /api/v1/last_blocks | 
 [**network_connection**](DefaultApi.md#network_connection) | **Get** /api/v1/network/connection | This endpoint returns a specific connection.
@@ -30,7 +33,9 @@ Method | HTTP request | Description
 [**resend_unconfirmed_txns**](DefaultApi.md#resend_unconfirmed_txns) | **Post** /api/v1/resendUnconfirmedTxns | 
 [**richlist**](DefaultApi.md#richlist) | **Get** /api/v1/richlist | Returns the top skycoin holders.
 [**transaction**](DefaultApi.md#transaction) | **Get** /api/v1/transaction | 
-[**transaction_inject**](DefaultApi.md#transaction_inject) | **Post** /api/v2/transaction/inject | Broadcast a hex-encoded, serialized transaction to the network.
+[**transaction_inject**](DefaultApi.md#transaction_inject) | **Post** /api/v1/injectTransaction | Broadcast a hex-encoded, serialized transaction to the network.
+[**transaction_post**](DefaultApi.md#transaction_post) | **Post** /api/v2/transaction | 
+[**transaction_post_unspent**](DefaultApi.md#transaction_post_unspent) | **Post** /api/v2/transaction/unspent | 
 [**transaction_raw**](DefaultApi.md#transaction_raw) | **Get** /api/v2/transaction/raw | Returns the hex-encoded byte serialization of a transaction. The transaction may be confirmed or unconfirmed.
 [**transaction_verify**](DefaultApi.md#transaction_verify) | **Post** /api/v2/transaction/verify | 
 [**transactions_get**](DefaultApi.md#transactions_get) | **Get** /api/v1/transactions | Returns transactions that match the filters.
@@ -49,8 +54,8 @@ Method | HTTP request | Description
 [**wallet_recover**](DefaultApi.md#wallet_recover) | **Post** /api/v2/wallet/recover | Recovers an encrypted wallet by providing the seed. The first address will be generated from seed and compared to the first address of the specified wallet. If they match, the wallet will be regenerated with an optional password. If the wallet is not encrypted, an error is returned.
 [**wallet_seed**](DefaultApi.md#wallet_seed) | **Post** /api/v1/wallet/seed | This endpoint only works for encrypted wallets. If the wallet is unencrypted, The seed will be not returned.
 [**wallet_seed_verify**](DefaultApi.md#wallet_seed_verify) | **Post** /api/v2/wallet/seed/verify | Verifies a wallet seed.
-[**wallet_spent**](DefaultApi.md#wallet_spent) | **Post** /api/v1/wallet/spend | 
-[**wallet_transaction**](DefaultApi.md#wallet_transaction) | **Post** /api/v1/wallet/transaction | 
+[**wallet_transaction**](DefaultApi.md#wallet_transaction) | **Post** /api/v1/wallet/transaction | Creates a signed transaction
+[**wallet_transaction_sign**](DefaultApi.md#wallet_transaction_sign) | **Post** /api/v2/wallet/transaction/sign | Creates a signed transaction
 [**wallet_transactions**](DefaultApi.md#wallet_transactions) | **Get** /api/v1/wallet/transactions | 
 [**wallet_unload**](DefaultApi.md#wallet_unload) | **Post** /api/v1/wallet/unload | Unloads wallet from the wallet service.
 [**wallet_update**](DefaultApi.md#wallet_update) | **Post** /api/v1/wallet/update | Update the wallet.
@@ -60,7 +65,7 @@ Method | HTTP request | Description
 
 ## address_count
 
-> Value address_count()
+> ::models::InlineResponse200 address_count()
 Returns the total number of unique address that have coins.
 
 ### Required Parameters
@@ -69,7 +74,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**Value**](Value.md)
+[**::models::InlineResponse200**](inline_response_200.md)
 
 ### Authorization
 
@@ -78,14 +83,14 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/xml, 
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
 ## address_uxouts
 
-> Vec<::models::InlineResponse200> address_uxouts(address)
+> Vec<Value> address_uxouts(address)
 
 
 Returns the historical, spent outputs associated with an address
@@ -99,7 +104,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Vec<::models::InlineResponse200>**](inline_response_200.md)
+[**Vec<Value>**](Value.md)
 
 ### Authorization
 
@@ -108,7 +113,57 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/xml, 
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## api_v1_rawtx_get
+
+> String api_v1_rawtx_get()
+
+
+### Required Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+**String**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: text/plain
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## api_v2_metrics_get
+
+> String api_v2_metrics_get()
+
+
+### Required Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+**String**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: text/plain
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -136,7 +191,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/xml, 
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -165,17 +220,15 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/xml, 
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
 ## block
 
-> Value block(optional)
-
-
-Returns a block by hash or seq. Note: only one of hash or seq is allowed
+> Vec<::models::BlockSchema> block(optional)
+Returns the balance of one or more addresses, both confirmed and predicted. The predicted balance is the confirmed balance minus the pending spends.
 
 ### Required Parameters
 
@@ -190,12 +243,12 @@ Optional parameters are passed through a map[string]interface{}.
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **hash** | **String**|  | 
- **seq** | **i32**|  | 
+ **hash** | **String**| get block by hash | 
+ **seq** | **i32**| get block by sequence number | 
 
 ### Return type
 
-[**Value**](Value.md)
+[**Vec<::models::BlockSchema>**](blockSchema.md)
 
 ### Authorization
 
@@ -204,7 +257,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/xml, 
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -229,7 +282,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/xml, 
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -254,17 +307,15 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/xml, 
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## blocks_get
+## blocks
 
-> Value blocks_get(optional)
-blocksHandler returns blocks between a start and end point,
-
-or an explicit list of sequences. If using start and end, the block sequences include both the start and end point. Explicit sequences cannot be combined with start and end. Without verbose.
+> ::models::InlineResponse2001 blocks(optional)
+Returns the balance of one or more addresses, both confirmed and predicted. The predicted balance is the confirmed balance minus the pending spends.
 
 ### Required Parameters
 
@@ -279,102 +330,9 @@ Optional parameters are passed through a map[string]interface{}.
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **start** | **i32**|  | 
- **end** | **i32**|  | 
- **seqs** | [**Vec<i32>**](i32.md)|  | 
-
-### Return type
-
-[**Value**](Value.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## blocks_post
-
-> Value blocks_post(ctx, optional)
-blocksHandler returns blocks between a start and end point,
-
-or an explicit list of sequences. If using start and end, the block sequences include both the start and end point. Explicit sequences cannot be combined with start and end. Without verbose
-
-### Required Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **start** | **i32**|  | 
- **end** | **i32**|  | 
- **seqs** | [**Vec<i32>**](i32.md)|  | 
-
-### Return type
-
-[**Value**](Value.md)
-
-### Authorization
-
-[csrfAuth](../README.md#csrfAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## coin_supply
-
-> Value coin_supply()
-
-
-coinSupplyHandler returns coin distribution supply stats
-
-### Required Parameters
-
-This endpoint does not need any parameter.
-
-### Return type
-
-[**Value**](Value.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## csrf
-
-> ::models::InlineResponse2001 csrf()
-Creates a new CSRF token. Previous CSRF tokens are invalidated by this call.
-
-### Required Parameters
-
-This endpoint does not need any parameter.
+ **start** | **i32**| start seq | 
+ **end** | **i32**| end seq | 
+ **seq** | [**Vec<i32>**](i32.md)| comma-separated list of block seqs | 
 
 ### Return type
 
@@ -387,7 +345,171 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/xml, 
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## coin_supply
+
+> ::models::InlineResponse2002 coin_supply()
+
+
+coinSupplyHandler returns coin distribution supply stats
+
+### Required Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**::models::InlineResponse2002**](inline_response_200_2.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json, application/xml, 
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## csrf
+
+> ::models::InlineResponse2003 csrf()
+Creates a new CSRF token. Previous CSRF tokens are invalidated by this call.
+
+### Required Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**::models::InlineResponse2003**](inline_response_200_3.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json, application/xml, 
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## data_delete
+
+> data_delete(optional)
+
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a map[string]interface{}.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **_type** | **String**| storage type. | 
+ **key** | **String**| key of the specific value to get. | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json, application/xml
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## data_get
+
+> Value data_get(optional)
+
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a map[string]interface{}.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **_type** | **String**| storage type. | 
+ **key** | **String**| key of the specific value to get. | 
+
+### Return type
+
+[**Value**](Value.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json, application/xml, 
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## data_post
+
+> data_post(optional)
+
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a map[string]interface{}.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **_type** | **String**| storage type. | 
+ **key** | **String**| key of the specific value to get. | 
+ **val** | **String**| additional value. | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json, application/xml
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -412,45 +534,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## explorer_address
-
-> Vec<::models::InlineResponse2002> explorer_address(optional)
-
-
-Returns all transactions (confirmed and unconfirmed) for an address
-
-### Required Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **address** | **String**| tags to filter by | 
-
-### Return type
-
-[**Vec<::models::InlineResponse2002>**](inline_response_200_2.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/xml, 
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -475,7 +559,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/xml, 
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -492,7 +576,7 @@ Returns the most recent N blocks on the blockchain
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-  **num** | **i32**|  | 
+  **num** | **i32**| Num of blockss | 
 
 ### Return type
 
@@ -505,14 +589,14 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/xml, 
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
 ## network_connection
 
-> ::models::InlineResponse2003 network_connection(addr)
+> ::models::NetworkConnectionSchema network_connection(addr)
 This endpoint returns a specific connection.
 
 ### Required Parameters
@@ -524,7 +608,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**::models::InlineResponse2003**](inline_response_200_3.md)
+[**::models::NetworkConnectionSchema**](networkConnectionSchema.md)
 
 ### Authorization
 
@@ -533,14 +617,14 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/xml, 
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
 ## network_connections
 
-> Vec<::models::InlineResponse2003> network_connections(ctx, optional)
+> ::models::InlineResponse2004 network_connections(ctx, optional)
 This endpoint returns all outgoings connections.
 
 ### Required Parameters
@@ -562,7 +646,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Vec<::models::InlineResponse2003>**](inline_response_200_3.md)
+[**::models::InlineResponse2004**](inline_response_200_4.md)
 
 ### Authorization
 
@@ -571,7 +655,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/xml, 
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -602,7 +686,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/xml
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -629,14 +713,14 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/xml, 
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
 ## network_connections_trust
 
-> Vec<String> network_connections_trust(ctx, )
+> Vec<String> network_connections_trust()
 trustConnectionsHandler returns all trusted connections.\\n They are not necessarily connected to. In the default configuration, these will be a subset of the default hardcoded bootstrap addresses.
 
 ### Required Parameters
@@ -649,12 +733,12 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[csrfAuth](../README.md#csrfAuth)
+No authorization required
 
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/xml, 
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -691,7 +775,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/xml, 
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -729,17 +813,15 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/xml, 
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
 ## pending_txs
 
-> Vec<::models::InlineResponse2004> pending_txs()
+> Vec<::models::InlineResponse20010> pending_txs()
 
-
-Returns pending (unconfirmed) transactions without verbose
 
 ### Required Parameters
 
@@ -747,7 +829,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**Vec<::models::InlineResponse2004>**](inline_response_200_4.md)
+[**Vec<::models::InlineResponse20010>**](inline_response_200_10.md)
 
 ### Authorization
 
@@ -756,14 +838,14 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/xml, 
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
 ## resend_unconfirmed_txns
 
-> resend_unconfirmed_txns(ctx, )
+> Value resend_unconfirmed_txns(ctx, )
 
 
 Broadcasts all unconfirmed transactions from the unconfirmed transaction pool
@@ -774,7 +856,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
- (empty response body)
+[**Value**](Value.md)
 
 ### Authorization
 
@@ -783,7 +865,7 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application-json, application/json, application/xml
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -820,38 +902,28 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/xml, 
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
 ## transaction
 
-> Value transaction(txid, optional)
+> ::models::Transaction transaction(txid)
 
 
-Returns a transaction identi`fied by its txid hash with just id
+Returns a transaction identified by its txid hash with just id
 
 ### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-  **txid** | **String**| transaction hash | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **txid** | **String**| transaction hash | 
- **encoded** | **bool**| return as a raw encoded transaction. | 
+  **txid** | **String**| transaction Id | 
 
 ### Return type
 
-[**Value**](Value.md)
+[**::models::Transaction**](transaction.md)
 
 ### Authorization
 
@@ -860,14 +932,14 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/xml, 
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
 ## transaction_inject
 
-> Value transaction_inject(ctx, rawtx)
+> String transaction_inject(ctx, rawtx)
 Broadcast a hex-encoded, serialized transaction to the network.
 
 ### Required Parameters
@@ -880,7 +952,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Value**](Value.md)
+**String**
 
 ### Authorization
 
@@ -889,7 +961,73 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: text/plain, application/json, application/xml
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## transaction_post
+
+> ::models::InlineResponse2008 transaction_post(ctx, optional)
+
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+ **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a map[string]interface{}.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **transaction_v2_params_address** | [**TransactionV2ParamsAddress**](TransactionV2ParamsAddress.md)|  | 
+
+### Return type
+
+[**::models::InlineResponse2008**](inline_response_200_8.md)
+
+### Authorization
+
+[csrfAuth](../README.md#csrfAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/xml, 
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## transaction_post_unspent
+
+> ::models::InlineResponse2008 transaction_post_unspent(ctx, transaction_v2_params_unspent)
+
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+  **transaction_v2_params_unspent** | [**TransactionV2ParamsUnspent**](TransactionV2ParamsUnspent.md)| Unspent parameters | 
+
+### Return type
+
+[**::models::InlineResponse2008**](inline_response_200_8.md)
+
+### Authorization
+
+[csrfAuth](../README.md#csrfAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/xml, 
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -925,21 +1063,25 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/xml, 
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
 ## transaction_verify
 
-> Value transaction_verify(ctx, )
+> Value transaction_verify(ctx, transaction_verify_request)
 
 
 Decode and verify an encoded transaction
 
 ### Required Parameters
 
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+  **transaction_verify_request** | [**TransactionVerifyRequest**](TransactionVerifyRequest.md)|  | 
 
 ### Return type
 
@@ -951,8 +1093,8 @@ This endpoint does not need any parameter.
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+- **Content-Type**: application/json
+- **Accept**: application/json, application/xml, 
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -989,7 +1131,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/xml, 
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1027,7 +1169,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/xml, 
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1063,14 +1205,14 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/xml, 
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
 ## verify_address
 
-> ::models::InlineResponse2007 verify_address(ctx, address)
+> Value verify_address(ctx, address)
 Verifies a Skycoin address.
 
 ### Required Parameters
@@ -1079,11 +1221,11 @@ Verifies a Skycoin address.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **address** | **String**| Address id. | 
+  **address** | [**Value**](.md)| Address id. | 
 
 ### Return type
 
-[**::models::InlineResponse2007**](inline_response_200_7.md)
+[**Value**](Value.md)
 
 ### Authorization
 
@@ -1092,14 +1234,14 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/xml, 
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
 ## version
 
-> Value version()
+> ::models::InlineResponse2005 version()
 
 
 versionHandler returns the application version info
@@ -1110,7 +1252,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**Value**](Value.md)
+[**::models::InlineResponse2005**](inline_response_200_5.md)
 
 ### Authorization
 
@@ -1119,7 +1261,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/xml, 
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1147,7 +1289,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/xml, 
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1175,7 +1317,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/xml, 
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1220,7 +1362,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/xml, 
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1250,7 +1392,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/xml, 
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1280,14 +1422,14 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/xml, 
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
 ## wallet_folder
 
-> ::models::InlineResponse2006 wallet_folder(addr)
+> ::models::InlineResponse2007 wallet_folder(addr)
 
 
 Returns the wallet directory path
@@ -1301,7 +1443,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**::models::InlineResponse2006**](inline_response_200_6.md)
+[**::models::InlineResponse2007**](inline_response_200_7.md)
 
 ### Authorization
 
@@ -1310,7 +1452,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/xml, 
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1352,7 +1494,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/xml, 
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1390,7 +1532,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/xml, 
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1431,7 +1573,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/xml, 
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1461,7 +1603,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/xml, 
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1498,50 +1640,14 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## wallet_spent
-
-> Value wallet_spent(ctx, id, dst, coins, password)
-
-
-Creates and broadcasts a transaction sending money from one of our wallets to destination address.
-
-### Required Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **id** | **String**| Wallet id | 
-  **dst** | **String**| Recipient address | 
-  **coins** | **String**| Number of coins to spend, in droplets. 1 coin equals 1e6 droplets. | 
-  **password** | **String**| Wallet password. | 
-
-### Return type
-
-[**Value**](Value.md)
-
-### Authorization
-
-[csrfAuth](../README.md#csrfAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/xml, 
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
 ## wallet_transaction
 
-> Value wallet_transaction(ctx, body)
-
-
+> Value wallet_transaction(ctx, wallet_transaction_request)
 Creates a signed transaction
 
 ### Required Parameters
@@ -1550,7 +1656,7 @@ Creates a signed transaction
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **body** | [**InlineObject**](InlineObject.md)|  | 
+  **wallet_transaction_request** | [**WalletTransactionRequest**](WalletTransactionRequest.md)|  | 
 
 ### Return type
 
@@ -1562,29 +1668,56 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, application/xml
-- **Accept**: application/json
+- **Content-Type**: application/json
+- **Accept**: application/json, application/xml, 
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## wallet_transactions
+## wallet_transaction_sign
 
-> Value wallet_transactions(id)
-
-
-Returns returns all unconfirmed transactions for all addresses in a given wallet verbose
+> ::models::InlineResponse2009 wallet_transaction_sign(ctx, wallet_transaction_sign_request)
+Creates a signed transaction
 
 ### Required Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-  **id** | **String**| Wallet id. | 
+ **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+  **wallet_transaction_sign_request** | [**WalletTransactionSignRequest**](WalletTransactionSignRequest.md)|  | 
 
 ### Return type
 
-[**Value**](Value.md)
+[**::models::InlineResponse2009**](inline_response_200_9.md)
+
+### Authorization
+
+[csrfAuth](../README.md#csrfAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/xml, 
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## wallet_transactions
+
+> ::models::InlineResponse2006 wallet_transactions(id)
+
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+  **id** | **String**| Wallet Id. | 
+
+### Return type
+
+[**::models::InlineResponse2006**](inline_response_200_6.md)
 
 ### Authorization
 
@@ -1593,7 +1726,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/xml, 
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1622,14 +1755,14 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/xml
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
 ## wallet_update
 
-> wallet_update(ctx, id, label)
+> String wallet_update(ctx, id, label)
 Update the wallet.
 
 ### Required Parameters
@@ -1643,7 +1776,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
- (empty response body)
+**String**
 
 ### Authorization
 
@@ -1652,14 +1785,14 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: text/plain, application/json, application/xml
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
 ## wallets
 
-> Vec<::models::InlineResponse2005> wallets()
+> Vec<Value> wallets()
 
 
 Returns all loaded wallets
@@ -1670,7 +1803,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**Vec<::models::InlineResponse2005>**](inline_response_200_5.md)
+[**Vec<Value>**](Value.md)
 
 ### Authorization
 
@@ -1679,7 +1812,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, application/xml, 
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
